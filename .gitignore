@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+frontend/dist/
+backend/dist/
+coverage/
+*.tsbuildinfo
+
+# Environment files & secrets
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backend/data/
+
+# MQTT runtime secrets & persistence
+mqtt/passwords
+mqtt/mosquitto.local.conf
+mqtt/data/
+mqtt/log/
+mqtt/certs/
+
+# Runtime PIDs & local logs
+.run/
+logs/
+
+# Firmware local secrets if split out
+firmware/**/secrets.h
+firmware/esp8266/smartroom_esp8266/secrets.h
+
+# Python face recognition virtual env & local biometric data
+.venv/
+scripts/face_recognition/data/
+__pycache__/
+*.pyc
+
+# IDE & OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log

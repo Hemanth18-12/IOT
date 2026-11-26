@@ -1,0 +1,38 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: smartroom-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      # Uncomment for MQTT over TLS (production / LAN TLS)
+      # - "8883:8883"
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mqtt/acl.conf:/mosquitto/config/acl.conf:ro
+      - ./mqtt/passwords:/mosquitto/config/passwords:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smartroom-backend
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    environment:
+      PORT: "3000"
+      MQTT_BROKER_URL: "mqtt://mosquitto:1883"
+      DB_PATH: "/app/data/smartroom.sqlite"
+    volumes:
+      - ./backend/data:/app/data
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:

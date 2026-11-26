@@ -1,0 +1,26 @@
+{
+  "name": "smartroom-iot",
+  "version": "1.0.0",
+  "description": "SmartRoom — Intelligent IoT Control and Security System",
+  "private": true,
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "dev": "bash scripts/start.sh",
+    "start": "bash scripts/start.sh",
+    "status": "bash scripts/status.sh",
+    "stop": "bash scripts/stop.sh",
+    "doctor": "bash scripts/doctor.sh",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "test": "cd backend && npm test && npm run test:e2e",
+    "test:browser": "node scripts/test-browser.mjs",
+    "simulate": "node scripts/simulate-device.js",
+    "firmware:compile": "bash scripts/firmware-compile.sh",
+    "firmware:ports": "bash scripts/firmware-ports.sh",
+    "face:register": "./.venv/bin/python scripts/face_recognition/register_face.py",
+    "face:start": "./.venv/bin/python scripts/face_recognition/smartroom_face.py"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2",
+    "qrcode-terminal": "^0.12.0"
+  }
+}

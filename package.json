@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "setup": "bash scripts/setup.sh",
+    "create-user": "cd backend && npm run create-user --",
     "dev": "bash scripts/start.sh",
     "start": "bash scripts/start.sh",
     "status": "bash scripts/status.sh",

@@ -48,6 +48,13 @@ export class SettingsService {
   }
 
   async getPrimaryAlertSetting(): Promise<Setting | null> {
+    const adminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
+    if (adminEmail) {
+      const adminUser = await this.usersService.findByEmail(adminEmail);
+      if (adminUser) {
+        return this.getOrCreateForUser(this.usersService.toSafeUser(adminUser));
+      }
+    }
     const first = await this.settingRepo.find({ take: 1 });
     if (first.length > 0) return first[0];
     const users = await this.usersService.findAll();

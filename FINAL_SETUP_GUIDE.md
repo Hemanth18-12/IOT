@@ -25,10 +25,13 @@ From `/Users/hemanth/Desktop/iota project /smartroom-iot`:
 - **Mobile Phone Website (Same Wi-Fi):** `http://10.247.220.74:5173` *(also available as a scannable QR code on the **About Project** page and in `npm run dev` output)*
 - **Swagger API Docs:** `http://localhost:3000/api/docs`
 
-### How to Retrieve Your Admin Login Password
-All generated secrets stay strictly inside your gitignored `backend/.env` file:
-1. Run `grep -E "ADMIN_EMAIL|ADMIN_PASSWORD" backend/.env` in Terminal (or open `backend/.env`).
-2. Log in at `http://localhost:5173` using `admin@smartroom.local` and the `ADMIN_PASSWORD` shown there.
+### How to Retrieve Your Admin Login Password (and Teammate Clones)
+All generated secrets stay strictly inside each machine's local gitignored `backend/.env` file (they are never pushed to GitHub):
+1. Run `grep -E "ADMIN_EMAIL|ADMIN_PASSWORD" backend/.env` in Terminal (or open `backend/.env`) to view the credentials generated on your computer.
+2. Or create/update a user anytime on your machine with:
+   ```bash
+   npm run create-user -- --email your-email@example.com --password "YourStrongPassword" --name "Your Name"
+   ```
 3. Change your password anytime under **Settings → Change Password**.
 
 ---
